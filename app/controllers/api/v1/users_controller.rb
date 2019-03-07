@@ -3,15 +3,7 @@ class Api::V1::UsersController < ApplicationController
 
   def new
     @user = User.new
-  end
-
-  def new_user_and_score
-    @user = User.new(user_params)
-    @score = Score.create
-    if @user.valid?
-      @user.save
-      render json: @user, status :ok
-    end
+    @score = Score.new
   end
 
   def create
@@ -44,7 +36,7 @@ class Api::V1::UsersController < ApplicationController
   private
 
   def user_params
-    params.permit(:username)
+    params.require(:user).permit(:username, :scores)
   end
 
   def find_score
