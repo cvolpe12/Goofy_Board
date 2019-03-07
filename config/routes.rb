@@ -5,13 +5,13 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :users, only: [:index, :update, :show]
+      resources :users, only: [:new, :create, :index, :update, :show]
     end
   end
 
   namespace :api do
     namespace :v1 do
-      resources :scores, only: [:index]
+      resources :scores, only: [:new, :create, :index]
     end
   end
 

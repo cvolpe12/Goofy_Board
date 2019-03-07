@@ -1,5 +1,18 @@
 class Api::V1::UsersController < ApplicationController
   before_action :find_score, only: [:update]
+
+  def new
+    @user = User.new
+  end
+
+  def create
+    @user = User.new(user_params)
+    if @user.valid?
+      @user.save
+      render json: @user, status: :ok
+    end
+  end
+
   def index
     @users = User.all
     render json: @users, status: :ok
