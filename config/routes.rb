@@ -5,14 +5,17 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :users, only: [:new, :create, :index, :update, :show]
+      resources :users do
+        resources :scores
+      end
     end
   end
 
-  namespace :api do
-    namespace :v1 do
-      resources :scores, only: [:new, :create, :index]
-    end
-  end
+  # namespace :api do
+  #   namespace :v1 do
+  #     resources :scores, only: [:new, :create, :index]
+  #   end
+  # end
 
+  # post '/newuserandscore', to: => 'users#new_user_and_score'
 end

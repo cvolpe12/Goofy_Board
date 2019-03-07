@@ -5,6 +5,15 @@ class Api::V1::UsersController < ApplicationController
     @user = User.new
   end
 
+  def new_user_and_score
+    @user = User.new(user_params)
+    @score = Score.create
+    if @user.valid?
+      @user.save
+      render json: @user, status :ok
+    end
+  end
+
   def create
     @user = User.new(user_params)
     if @user.valid?
